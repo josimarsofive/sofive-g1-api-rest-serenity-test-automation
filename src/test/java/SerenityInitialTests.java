@@ -1,12 +1,17 @@
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
+import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Get;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import questions.ResponseCode;
+import tasks.GetUsers;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.CoreMatchers.equalTo;
+
 
 @RunWith(SerenityRunner.class)
 public class SerenityInitialTests {
@@ -19,18 +24,12 @@ public class SerenityInitialTests {
 
         josimar.attemptsTo(GetUsers.fromPage(2));
 
-        assertThat(SerenityRest.lastResponse().statusCode()).isEqualTo(200);
+        //assertThat(SerenityRest.lastResponse().statusCode()).isEqualTo(200);
+
+        josimar.should(
+                seeThat("el codigo de respuesta", ResponseCode.was(),equalTo(200))
+        );
 
     }
 
-    @Test
-    public void getUsersFail(){
-        Actor josimar = Actor.named("Josimar the trainer")
-                .whoCan(CallAnApi.at(restApiUrl));
-
-        josimar.attemptsTo(Get.resource("/users?page=2"));
-
-        assertThat(SerenityRest.lastResponse().statusCode()).isEqualTo(400);
-
-    }
 }
