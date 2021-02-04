@@ -17,7 +17,7 @@ public class SerenityInitialTests {
         Actor josimar = Actor.named("Josimar the trainer")
                 .whoCan(CallAnApi.at(restApiUrl));
 
-        josimar.attemptsTo(Get.resource("/users?page=2"));
+        josimar.attemptsTo(GetUsers.fromPage(2));
 
         assertThat(SerenityRest.lastResponse().statusCode()).isEqualTo(200);
 
