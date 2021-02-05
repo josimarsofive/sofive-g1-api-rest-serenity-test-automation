@@ -1,3 +1,4 @@
+import facts.NetflixPlans;
 import models.users.Datum;
 import models.users.RegisterUserInfo;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -84,6 +85,15 @@ public class SerenityInitialTests {
         josimar.should(
                 seeThat("el codigo de respuesta", ResponseCode.was(),equalTo(200))
         );
+
+
+    }
+
+    @Test
+    public void factTest(){
+        Actor josimar = Actor.named("Josimar the trainer")
+                .whoCan(CallAnApi.at(restApiUrl));
+        josimar.has(NetflixPlans.toViewSeries());
 
 
     }
