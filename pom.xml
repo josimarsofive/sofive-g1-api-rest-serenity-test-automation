@@ -14,8 +14,11 @@
     <serenity.version>2.3.4</serenity.version>
     <serenity.maven.version>2.3.4</serenity.maven.version>
     <encoding>UTF-8</encoding>
+
     <tags></tags>
     <parallel.tests>4</parallel.tests>
+
+    <hibernate.version>5.2.10.Final</hibernate.version>
   </properties>
 
   <repositories>
@@ -51,12 +54,14 @@
       <artifactId>hibernate-entitymanager</artifactId>
       <version>5.4.1.Final</version>
     </dependency>
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.15</version>
       <scope>provided</scope>
     </dependency>
+
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
@@ -87,17 +92,20 @@
       <artifactId>serenity-screenplay-rest</artifactId>
       <version>${serenity.version}</version>
     </dependency>
+
     <dependency>
       <groupId>net.serenity-bdd</groupId>
       <artifactId>serenity-ensure</artifactId>
       <version>${serenity.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>net.serenity-bdd</groupId>
       <artifactId>serenity-cucumber6</artifactId>
       <version>${serenity.version}</version>
     </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -197,14 +205,12 @@
         </configuration>
       </plugin>
     </plugins>
-
   </build>
-
   <profiles>
     <profile>
       <id>dev</id>
       <properties>
-        <restapi.baseurl>http://localhost:5000/api</restapi.baseurl>
+        <restapi.baseurl>http://reqres.in/api</restapi.baseurl>
       </properties>
     </profile>
     <profile>

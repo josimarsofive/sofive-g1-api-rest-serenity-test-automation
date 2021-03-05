@@ -19,13 +19,13 @@ public class GetUsers implements Task {
     public static Performable fromPage(int page) {
         return instrumented(GetUsers.class, page);
     }
+
+
     @Override
     public <T extends Actor> void performAs(T actor) {
-
         actor.attemptsTo(Get.resource("/users?page="+page)
                 .with(requestSpecification
                         -> requestSpecification.contentType(ContentType.JSON)
                         .header("header1","value1")));
-
     }
 }
